@@ -1,0 +1,21 @@
+import pyautogui
+from PIL import ImageGrab
+import time
+
+def get_color_at(x, y):
+    # Captura a tela
+    screen = ImageGrab.grab()
+    # Obtém a cor do pixel na posição (x, y)
+    color = screen.getpixel((x, y))
+    return color
+
+print("Aperte Ctrl-C para sair.")
+try:
+    while True:
+        x, y = pyautogui.position()
+        color = get_color_at(x, y)
+        print(f"Posição: ({x}, {y}) - Cor RGB: {color}", end="")
+        print("\b" * 50, end="", flush=True)
+        time.sleep(0.1)
+except KeyboardInterrupt:
+    print("\nSaindo...")
